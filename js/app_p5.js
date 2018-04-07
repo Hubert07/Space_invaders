@@ -1,10 +1,14 @@
 // kod projektu [Flappy bird]
 
 var bird;
+var img;
 
 function setup() {
   // put setup code here
-createCanvas(500, 700);
+var cnv = createCanvas(800, 500);
+var x = (windowWidth - width) / 2;
+  cnv.position(x, 150);
+  cnv.parent('canvas1')
 bird = new Bird();
 
 }
