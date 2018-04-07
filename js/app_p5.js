@@ -5,12 +5,14 @@ var img;
 
 function setup() {
   // put setup code here
-var cnv = createCanvas(800, 500);
+var cnv = createCanvas(800, 500, WEBGL);
 var x = (windowWidth - width) / 2;
   cnv.position(x, 150);
   cnv.parent('canvas1')
+
 bird = new Bird();
 
+img = loadImage("img/ptak.png");
 }
 
 function draw() {
@@ -22,16 +24,15 @@ bird.show();
   //ptak
 }
 function Bird() {
-  this.y = width/2;
-  this.x = 70;
+  this.y = 150;
+  this.x = (width) - 650;
 
-  this.gravity = 1/7;
+  this.gravity = 1/9;
   this.gravitySpeed = 0;
   this.velocity = 0;
 
   this.show = function() {
-    fill(255);
-    ellipse(this.x, this.y, 20, 20);
+    texture(img);
   }
 this.update = function() {
   this.gravitySpeed += this.gravity;
