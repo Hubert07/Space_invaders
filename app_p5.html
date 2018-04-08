@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Projekt [wpisz nazwę]</title>
+    <title>Wersja p5</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,21 +21,24 @@
     <![endif]-->
 
     <!-- Tutaj dodajesz swój kod -->
-    <!-- Tutaj dodajesz swój kod -->
-    <h1>PROJEKT FLAPPY BIRD</h1>
-    <div>
-      <ul class="menu">
-        <a href="index.html" ><button> Strona główna</a>
-        <a href="app_jq.html" ><button> Wersja jQuery </a>
-        <a href="app_p5.html" ><button> Wersja p5 </a>
-      </ul>
-    </div>
-    <div id=canvas1></div>
 
+  <div>
+    <ul class="ul">
+        <li class="li"><a class="menu" href="index.html">Strona główna</a></li>
+        <li class="li"><a class="menu" href="app_jq.html">Wersja jQuery</a></li>
+        <li class="li"><a class="menu" href="app_p5.html">Wersja p5</a></li>
+    </ul>
+    <br>
+<div id="canvas1"></div>
+    <!-- Tutaj dodajesz swój kod -->
+    <div id="stopka">
+        <p class="stopka">&copy; Wszelkie prawa zastrzeżone. Data ostatniej aktualizacji: 10.04.2018r.<br>
+        Autorzy:Hubert Gajewski, Piotr Bogdański, Paweł Sroczyński, Dawid Gładowski, Katarzyna Dąda </p>
+    </div>
     <!-- skrypt umożliwiający sprawdzanie możliwośći przeglądarki -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <!--biblioteka jQuery-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>-->
     <!--jeżeli nie pobrano jQuery z sieci, spróbuj załadować ją z podfolderu js -->
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
     <script src="js/plugins.js"></script>
@@ -49,7 +52,5 @@
     <script src="js/app_p5.js"></script>
 
   </body>
-  <footer>
-    Autorzy: <address>Hubert Gajewski, Piotr Bogdański, Paweł Sroczyński, Dawid Gładowski, Katarzyna Dąda </address>
-  </footer>
+
 </html>

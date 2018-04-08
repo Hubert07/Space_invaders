@@ -23,7 +23,10 @@ html {
  */
 
 body {
-
+  margin: 0;
+  background-color:#7FFF00;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 /**
@@ -521,4 +524,9 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+#stopka{
+  position: absolute;
+  bottom: 0;
 }

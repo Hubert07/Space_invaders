@@ -7,7 +7,7 @@ function setup() {
   // put setup code here
 var cnv = createCanvas(800, 500, WEBGL);
 var x = (windowWidth - width) / 2;
-  cnv.position(x, 150);
+  cnv.position(x, 75);
   cnv.parent('canvas1')
 
 bird = new Bird();
