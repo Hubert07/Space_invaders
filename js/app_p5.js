@@ -1,7 +1,7 @@
 // kod projektu [Flappy bird]
 
 var bird;
-var img;
+// var img;
 
 function setup() {
   // put setup code here
@@ -18,7 +18,7 @@ cnv.position(canvasX, canvasY);
 
 bird = new Bird();
 
-img = loadImage("img/ptak.png");
+// img = loadImage("img/ptak.png");
 }
 
 function draw() {
@@ -30,11 +30,11 @@ bird.show();
   //ptak
 }
 function Bird() {
-  this.y = height/5;
-  this.x = width/6;
+  this.y = height/2;
+  this.x = 65;
 
-  this.gravity = 1/5;
-  this.gravitySpeed = 0;
+  this.gravity = 1;
+  // this.gravitySpeed = 0;
   this.velocity = 0;
 
   this.show = function() {
@@ -43,15 +43,35 @@ function Bird() {
 
     // texture(img);
   }
+
+
+
 this.update = function() {
-  this.gravitySpeed += this.gravity;
-  this.veliocity += this.gravity;
-  this.y += this.velocity + this.gravitySpeed
+  this.velocity += this.gravity;
+  this.y += this.velocity;
 
   if (this.y > height) {
     this.y = height;
     this.velocity = 0;
   }
+
+  if (this.y < 0) {
+    this.y = 0;
+    this.velocity = 0;
+  }
 }
 
+
+
+    this.up = function() {
+      this.velocity += -this.gravity*10;
+      println(this.velocity);
+    }
+
 }
+
+function keyPressed() {
+  if (key == ' ');
+  bird.up();
+    // console.log("spacja");
+  }
