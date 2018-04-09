@@ -2,6 +2,7 @@
 
 var bird;
 // var img;
+var pipes = [];
 
 function setup() {
   // put setup code here
@@ -18,6 +19,8 @@ cnv.position(canvasX, canvasY);
 
 bird = new Bird();
 
+pipes.push(new Pipe());
+
 // img = loadImage("img/ptak.png");
 }
 
@@ -26,6 +29,11 @@ function draw() {
 background(0);
 bird.update();
 bird.show();
+
+for (var i = 0; i < pipes.lenght; i++) {
+  pipes[i].show();
+  pipes[i].update();
+}
 
   //ptak
 }
@@ -76,3 +84,23 @@ function keyPressed() {
   bird.up();
     // console.log("spacja");
   }
+
+function Pipe() {
+  this.top = random(height/2);
+  this.bottom = random(height/2);
+  this.x = width;
+  this.w = 20;
+  this.speed = 5;
+
+  this.show = function() {
+    fill(30, 158, 47);
+    rect(this.x, 0, this.w, this.top);
+    rect(this.x, height-this.bottom, this.w, this.bottom);
+  }
+
+this.update = function() {
+  this.x -= this.speed;
+}
+
+
+}
