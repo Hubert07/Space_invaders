@@ -30,15 +30,15 @@ bird.show();
   //ptak
 }
 function Bird() {
-  this.y = height/2;
+  this.y = height/5;
   this.x = 65;
 
-  this.gravity = 1;
-  // this.gravitySpeed = 0;
+  this.gravity = 0.5;
+  this.lift = -15;
   this.velocity = 0;
 
   this.show = function() {
-    fill(255);
+    fill(96, 90, 154);
    ellipse(this.x, this.y, 32, 32);
 
     // texture(img);
@@ -48,6 +48,7 @@ function Bird() {
 
 this.update = function() {
   this.velocity += this.gravity;
+  this.velocity *= 0.98;
   this.y += this.velocity;
 
   if (this.y > height) {
@@ -64,7 +65,7 @@ this.update = function() {
 
 
     this.up = function() {
-      this.velocity += -this.gravity*10;
+      this.velocity += this.lift;
       println(this.velocity);
     }
 
