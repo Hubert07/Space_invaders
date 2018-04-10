@@ -26,28 +26,35 @@ pipes.push(new Pipe());
 
 function draw() {
   // put drawing code here
-background(0);
+background(173,216,230);
 bird.update();
 bird.show();
 
-for (var i = 0; i < pipes.lenght; i++) {
+for (var i = 0; i < pipes.length; i++) {
   pipes[i].show();
   pipes[i].update();
+}
+
+if (frameCount % 70 == 0) {
+  pipes.push(new Pipe());
 }
 
   //ptak
 }
 function Bird() {
   this.y = height/5;
-  this.x = 65;
+  this.x = 100;
 
   this.gravity = 0.5;
   this.lift = -15;
   this.velocity = 0;
+  this.stroke = noStroke();
+
 
   this.show = function() {
     fill(96, 90, 154);
    ellipse(this.x, this.y, 32, 32);
+
 
     // texture(img);
   }
@@ -72,10 +79,10 @@ this.update = function() {
 
 
 
-    this.up = function() {
-      this.velocity += this.lift;
-      println(this.velocity);
-    }
+this.up = function() {
+  this.velocity += this.lift;
+  // println(this.velocity);
+  }
 
 }
 
@@ -86,16 +93,18 @@ function keyPressed() {
   }
 
 function Pipe() {
-  this.top = random(height/2);
-  this.bottom = random(height/2);
+  this.top = random(height)/2;
+  this.bottom = random(height)/2;
   this.x = width;
-  this.w = 20;
-  this.speed = 5;
+  this.w = 60;
+  this.speed = 4;
+  strokeWeight(1);
+  stroke(0);
 
   this.show = function() {
     fill(30, 158, 47);
-    rect(this.x, 0, this.w, this.top);
-    rect(this.x, height-this.bottom, this.w, this.bottom);
+    rect(this.x, 0, this.w, this.top-this.bottom);
+    rect(this.x, height-this.bottom, this.w, this.bottom+this.top);
   }
 
 this.update = function() {
