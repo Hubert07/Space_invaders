@@ -4,7 +4,12 @@
 # TEAM
 
     <name> -- <role> -- <email>
-
+	Hubert Gajewski jQuery
+	Piotr Bogdañski p5
+	Dawid G³adowski p5
+	Katarzyna D¹da CSS
+	Pawe³ Sroczyñski CSS i HTML
+	
 # THANKS
 
     <name>

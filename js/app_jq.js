@@ -1,4 +1,4 @@
-// kod projektu [flappy bird]
+   // kod projektu [flappy bird]
 $(document).ready(function() {
     var container = $('#container');
     var ptak = $('#ptak');
