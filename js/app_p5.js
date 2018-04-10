@@ -4,6 +4,9 @@ var bird;
 // var img;
 var pipes = [];
 
+var game_over = false;
+
+
 function setup() {
   // put setup code here
 
@@ -30,14 +33,23 @@ background(173,216,230);
 bird.update();
 bird.show();
 
+
+
 for (var i = 0; i < pipes.length; i++) {
   pipes[i].show();
   pipes[i].update();
+
+  if (pipes[i].hits(bird)) {
+    console.log("Przegrałeś");
+  }
+
 }
 
 if (frameCount % 70 == 0) {
   pipes.push(new Pipe());
 }
+
+
 
   //ptak
 }
@@ -103,6 +115,9 @@ function Pipe() {
 
   this.show = function() {
     fill(30, 158, 47);
+    if (this.uderzenie) {
+      fill(255, 0, 0);
+    }
     rect(this.x, 0, this.w, this.top-this.bottom);
     rect(this.x, height-this.bottom, this.w, this.bottom+this.top);
   }
@@ -110,6 +125,19 @@ function Pipe() {
 this.update = function() {
   this.x -= this.speed;
 }
+this.uderzenie = false;
+
+this.hits = function(bird) {
+  if (bird.y < this.top-this.bottom || bird.y > height - this.bottom+this.top) {
+    if (bird.x > this.x && bird.x < this.x + this.w) {
+      this.uderzenie = true;
+      return true;
+    }
+  }
+  this.uderzenie = false;
+  return false;
+}
+
 
 
 }
