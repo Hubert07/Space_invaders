@@ -1,115 +1,125 @@
-// kod projektu [Flappy bird]
+// kod dzialaj
 
-let bird;
-let pipes = [];
+let ptak;
+let rury = [];
 let game_over = false;
+let wynik = -1;
 
 
 function setup() {
-let canvasX = (windowWidth - width) /4;
-let canvasY = 100;
-let cnv = createCanvas(800, 500);
-cnv.position(canvasX, canvasY);
+    // rozmieszczenie
+    let canvasX = (windowWidth - width) /4;
+    let canvasY = 100;
+    let cnv = createCanvas(800, 500);
+    cnv.position(canvasX, canvasY);
 
-bird = new Bird();
-pipes.push(new Pipe());
+    ptak = new Ptak();
+    rury.push(new Rura());
 }
 
 
 function draw() {
-background(173,216,230);
-bird.update();
-bird.show();
+    background(173, 216, 230);
+    ptak.show();
+    ptak.update();
 
-for (var i = 0; i < pipes.length; i++) {
-  pipes[i].show();
-  pipes[i].update();
+    for (var i = 0; i < rury.length; i++) {
+        rury[i].show();
+        rury[i].update();
 
-  if (pipes[i].hits(bird)) {
-    console.log("Przegrałeś");
-    game_over = true;
-  }
+        if (rury[i].hits(ptak)) {
+            noLoop();
+            textSize(50);
+            fill(255, 0 , 0);
+            text('Przegrałeś', (width/2)-150, height/2);
+            fill(0, 0 , 0);
+            textSize(32);
+            text('Twoj wynik to :', (width/2)-150, height/4);
+            text(wynik, (width/2)+90, height/4);
+            game_over = true;
+            console.log("Przegrałeś");
+        }
+    }
+
+    if (frameCount % 60 == 0) {
+        rury.push(new Rura());
+        wynik++;
+    }
 }
 
-if (frameCount % 60 == 0) {
-  pipes.push(new Pipe());
-}
-}
 
+function Ptak() {
+    this.y = height/5;
+    this.x = 100;
 
-function Bird() {
-  this.y = height/5;
-  this.x = 100;
-
-  this.gravity = 0.5;
-  this.lift = -15;
-  this.velocity = 0;
-  this.stroke = noStroke();
-
-  this.show = function() {
-    fill(96, 90, 154);
-   ellipse(this.x, this.y, 32, 32);
-  }
-
-this.update = function() {
-  this.velocity += this.gravity;
-  this.velocity *= 0.98;
-  this.y += this.velocity;
-
-  if (this.y > height) {
-    this.y = height;
+    this.gravity = 0.5;
     this.velocity = 0;
-  }
+    this.lift = -15;
+    this.stroke = noStroke();
 
-  if (this.y < 0) {
-    this.y = 0;
-    this.velocity = 0;
-  }
-}
+    this.show = function () {
+        fill(96, 90, 154);
+        ellipse(this.x, this.y, 32, 32);
+    }
 
-this.up = function() {
-  this.velocity += this.lift;
-  }
+    this.update = function () {
+        this.velocity += this.gravity;
+        this.velocity *= 0.98;
+        this.y += this.velocity;
+
+        if (this.y > height) {
+            this.y = height;
+            this.velocity = 0;
+        }
+
+        if (this.y < 0) {
+            this.y = 0;
+            this.velocity = 0;
+        }
+    }
+
+    this.up = function () {
+        this.velocity += this.lift;
+    }
 }
 
 
 function keyPressed() {
-  if (key == ' ');
-  bird.up();
-  }
-
-
-function Pipe() {
-  this.top = random(height)/2;
-  this.bottom = random(height)/2;
-  this.x = width;
-  this.w = 60;
-  this.speed = 8;
-  strokeWeight(1);
-  stroke(0);
-
-  this.show = function() {
-    fill(30, 158, 47);
-    if (this.uderzenie) {
-      fill(255, 0, 0);
-    }
-    rect(this.x, 0, this.w, this.top-this.bottom+10);
-    rect(this.x, height-this.bottom+10, this.w, this.bottom+this.top);
-  }
-
-this.update = function() {
-  this.x -= this.speed;
+    if (key == ' ');
+    ptak.up();
 }
-this.uderzenie = false;
 
-this.hits = function(bird) {
-  if (bird.y < this.top-this.bottom || bird.y > height - this.bottom+this.top) {
-    if (bird.x > this.x && bird.x < this.x + this.w) {
-      this.uderzenie = true;
-      return true;
+
+function Rura() {
+    this.wysokosc = random(height)/2;
+    this.x = width;
+    this.w = 60;
+    this.speed = 8;
+    strokeWeight(1);
+    stroke(0);
+
+    this.show = function () {
+        fill(30, 158, 47);
+        if (this.uderzenie) {
+            fill(255, 0 , 0);
+        }
+        rect(this.x, 0, this.w, this.wysokosc);
+        rect(this.x,  this.wysokosc+120, this.w, height-this.wysokosc-120);
     }
-  }
-  this.uderzenie = false;
-  return false;
-}
+
+    this.update = function () {
+        this.x -= this.speed;
+    }
+    this.uderzenie = false;
+
+    this.hits = function (ptak) {
+        if (ptak.y < this.wysokosc || ptak.y > this.wysokosc + 120) {
+            if (ptak.x >= this.x && ptak.x <= this.x + this.w) {
+                this.uderzenie = true;
+                return true;
+            }
+        }
+        this.uderzenie = false;
+        return  false;
+    }
 }
