@@ -1,39 +1,25 @@
 // kod projektu [Flappy bird]
 
-var bird;
-// var img;
-var pipes = [];
-
-var game_over = false;
+let bird;
+let pipes = [];
+let game_over = false;
 
 
 function setup() {
-  // put setup code here
-
-
-// var cnv = createCanvas(800, 500, WEBGL);
-// var canvasx = (windowWidth - width) / 2;
-//   cnv.position(canvasx, 75);
-//   cnv.parent('canvas1')
-var canvasX = (windowWidth - width) /4;
-var canvasY = 100;
-var cnv = createCanvas(800, 500);
+let canvasX = (windowWidth - width) /4;
+let canvasY = 100;
+let cnv = createCanvas(800, 500);
 cnv.position(canvasX, canvasY);
 
 bird = new Bird();
-
 pipes.push(new Pipe());
-
-// img = loadImage("img/ptak.png");
 }
 
+
 function draw() {
-  // put drawing code here
 background(173,216,230);
 bird.update();
 bird.show();
-
-
 
 for (var i = 0; i < pipes.length; i++) {
   pipes[i].show();
@@ -41,18 +27,16 @@ for (var i = 0; i < pipes.length; i++) {
 
   if (pipes[i].hits(bird)) {
     console.log("Przegrałeś");
+    game_over = true;
   }
-
 }
 
-if (frameCount % 70 == 0) {
+if (frameCount % 60 == 0) {
   pipes.push(new Pipe());
 }
-
-
-
-  //ptak
 }
+
+
 function Bird() {
   this.y = height/5;
   this.x = 100;
@@ -62,16 +46,10 @@ function Bird() {
   this.velocity = 0;
   this.stroke = noStroke();
 
-
   this.show = function() {
     fill(96, 90, 154);
    ellipse(this.x, this.y, 32, 32);
-
-
-    // texture(img);
   }
-
-
 
 this.update = function() {
   this.velocity += this.gravity;
@@ -89,27 +67,24 @@ this.update = function() {
   }
 }
 
-
-
 this.up = function() {
   this.velocity += this.lift;
-  // println(this.velocity);
   }
-
 }
+
 
 function keyPressed() {
   if (key == ' ');
   bird.up();
-    // console.log("spacja");
   }
+
 
 function Pipe() {
   this.top = random(height)/2;
   this.bottom = random(height)/2;
   this.x = width;
   this.w = 60;
-  this.speed = 4;
+  this.speed = 8;
   strokeWeight(1);
   stroke(0);
 
@@ -118,8 +93,8 @@ function Pipe() {
     if (this.uderzenie) {
       fill(255, 0, 0);
     }
-    rect(this.x, 0, this.w, this.top-this.bottom);
-    rect(this.x, height-this.bottom, this.w, this.bottom+this.top);
+    rect(this.x, 0, this.w, this.top-this.bottom+10);
+    rect(this.x, height-this.bottom+10, this.w, this.bottom+this.top);
   }
 
 this.update = function() {
@@ -137,7 +112,4 @@ this.hits = function(bird) {
   this.uderzenie = false;
   return false;
 }
-
-
-
 }
